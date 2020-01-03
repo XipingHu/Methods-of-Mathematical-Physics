@@ -1,0 +1,72 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{ctex}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{geometry}
+\geometry{a4paper,scale=0.8}
+\usepackage{caption}
+\usepackage{subcaption}
+\newcommand{\oiint}{\mathop{{\int\!\!\!\!\!\int}\mkern-21mu \bigcirc} {}}
+\newcommand*{\dif}{\mathop{}\!\mathrm{d}}
+\newcommand*{\md}{\mathop{}\!\mathrm{d}}
+
+\usepackage{parskip}
+\setlength{\parindent}{0cm}
+
+\usepackage{bm}
+\let\Oldmathbf\mathbf
+\renewcommand{\mathbf}[1]{\boldsymbol{\Oldmathbf{#1}}}
+\let\eqnarray\align
+
+\author{Xiping Hu}
+\title{数学物理方法}
+
+\begin{document}
+\maketitle
+
+\section{勒让德方程}
+
+\subsection{在$x=0$的邻域求解勒让德方程}
+
+$l$阶勒让德方程
+\begin{equation*}
+  \label{eq:1}
+  \left( 1 - x^{2} \right) y'' - 2 x y' + l \left( l + 1 \right) y = 0
+\end{equation*}
+的解法为：设
+\begin{equation*}
+  \label{eq:2}
+  y \left( x \right) = \sum\limits_{k = 0}^{\infty} a_{k} z^{k}
+\end{equation*}
+则
+\begin{equation*}
+  \begin{aligned}
+    y \left( x\right) &= a_{0} + a_{1}x + a_{2}x^{2} + a_{3}x^{3} + \cdots \\
+    y' \left( x \right) &= a_{1}x + 2 a_{2}x + 3 a_{3}x^{2} + 4 a_{4}x^{3} \cdots \\
+    y'' \left( x \right) &= 2 a_{2} + 3 \cdot 2  a_{3}x + 4 \cdot 3 a_{4}x^{2} + 5 \cdot 4 a_{5} x^{3} \cdots
+  \end{aligned}
+\end{equaotion*}
+代入方程，比较系数，得到奇数项和偶数项
+
+\subsection{勒让德多项式}
+
+\begin{equation*}
+  \label{eq:6}
+  P_{l} \left( x \right) = \dfrac{1}{2^{l} l!} \dfrac{\md^{l}}{\md x^{l}} \left( x^{2} - 1 \right)^{l}
+\end{equation*}
+
+\subsection{广义傅立叶级数的展开}
+
+\begin{equation*}
+  \label{eq:7}
+  \left\{
+    \begin{aligned}
+      f(x) &= \sum\limits_{0}^{\infty} f_{l} P_{l}(x) \\
+      f_{l} &= \dfrac{2l+1}{2} \int_{-1}^{+1} f(x) P_{l}(x) \md x
+    \end{aligned}
+  \right.
+\end{equation*}
+\end{document}
