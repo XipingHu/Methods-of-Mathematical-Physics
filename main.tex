@@ -2,6 +2,7 @@
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
+\usepackage{wasysym}
 \usepackage{ctex}
 \usepackage{graphicx}
 \usepackage{float}
@@ -9,7 +10,7 @@
 \geometry{a4paper,scale=0.8}
 \usepackage{caption}
 \usepackage{subcaption}
-\newcommand{\oiint}{\mathop{{\int\!\!\!\!\!\int}\mkern-21mu \bigcirc} {}}
+% \newcommand{\oiint}{\mathop{{\int\!\!\!\!\!\int}\mkern-21mu \bigcirc} {}}
 \newcommand*{\dif}{\mathop{}\!\mathrm{d}}
 \newcommand*{\md}{\mathop{}\!\mathrm{d}}
 
@@ -22,10 +23,151 @@
 \let\eqnarray\align
 
 \author{Xiping Hu}
-\title{数学物理方法}
+\title{数学物理方法要背的东西汇总}
 
 \begin{document}
 \maketitle
+
+\section{解析函数}
+
+函数$f(x) = u + v \mathrm{i}$解析的充分必要条件
+\begin{equation*}
+  \left\{
+  \begin{aligned}
+    \dfrac{\partial u}{\partial x} &= + \dfrac{\partial v}{\partial y} \\
+    \dfrac{\partial u}{\partial y} &= - \dfrac{\partial v}{\partial x} 
+  \end{aligned}
+  \right.
+\end{equation*}
+
+\section{复变函数的积分}
+
+\subsection{柯西定理}
+对于单连通区域
+\begin{equation*}
+  \oint_{c} f(z) \md z = 0
+\end{equation*}
+
+\subsection{柯西公式}
+
+单连通区域内点$z$
+\begin{equation*}
+  f(z) = \dfrac{1}{2 \mathrm{\pi} \mathrm{i}} \oint_{l} \dfrac{f(\zeta)}{\zeta - z} \md \zeta
+\end{equation*}
+
+\section{留数定理}
+
+$b_{i}$为所有$l$内奇点，则
+\begin{equation*}
+  \oint_{l} f(z) \md z = 2 \mathrm{\pi} \mathrm{i} \sum\limits \mathrm{Res}f(b_{i})
+\end{equation*}
+包括无穷远点在内的所有的奇点的留数和为零
+
+\section{留数的运算}
+$n$阶极点留数运算
+\begin{equation*}
+  \mathrm{Res} \left[ f(z),\eta \right] = \dfrac{1}{(n - 1)!} \lim\limits_{z \rightarrow \eta} \dfrac{\md^{n-1}}{\md z^{n-1}} \left[ (z-\eta)^{n} f(z) \right]
+\end{equation*}
+当$f(z) = \dfrac{P(z)}{Q(z)} $ 时，一阶级点的计算可以简化
+\begin{equation*}
+  \mathrm{Res} f(z_{0}) = \lim\limits_{z \rightarrow z_{0}} (z - z_{0}) f(z) = \lim\limits_{z \rightarrow z_{0}} (z - z_{0}) \dfrac{P(z)}{Q(z)} =  \dfrac{P(z_{0})}{Q'(z_{0})} 
+\end{equation*}
+
+\section{利用留数定理计算实变函数的积分}
+
+\subsection{几个类型的积分}
+
+
+
+\emph{非常重要，请仔细阅读梁昆淼《数学物理方法》P56-P63，就那几种类型}
+
+\subsection{大圆弧定理}
+
+当$z \rightarrow \infty$时，如果$zf(z) \rightarrow k$，积分路径是半径为$R$的圆弧$C_{R}$，则
+\begin{equation*}
+  \lim\limits_{R \rightarrow \infty} \int_{C_{R}} f(z) \md z = \mathrm{i} k (\beta - \alpha)
+\end{equation*}
+
+\subsection{小圆弧定理}
+
+
+当$z \rightarrow \infty$时，如果$(z-a)f(z) \rightarrow k$，积分路径是半径为$R$的圆弧$C_{R}$，则
+\begin{equation*}
+  \lim\limits_{\rho \rightarrow 0} \int_{C_{\rho}} f(z) \md z = \mathrm{i} k \left( \beta - \alpha  \right)
+\end{equation*}
+
+\section{波动方程的行波解}
+
+达朗贝尔解
+\begin{equation*}
+  u(x,t) = \dfrac{1}{2} \left[ \phi (x + vt) + \phi (x - vt) \right] + \dfrac{1}{2v} \int_{x-vt}^{x+vt} \psi(\xi) \md \xi
+\end{equation*}
+
+\section{数学物理方程的求解}
+
+\subsection{齐次边界条件}
+
+\begin{equation*}
+  \left\{
+  \begin{aligned}
+    & \dfrac{\partial^{2} u}{\partial t^{2}} - v^{2} \dfrac{\partial^{2} u}{\partial x^{2}} = 0 \\
+    & u |_{x=0} = 0\\
+    & u |_{x=L} = 0\\
+    & u |_{t=0} = \phi (x)\\
+    & \!\!\left. \dfrac{\partial u}{\partial t} \right|_{t=0} = \psi (x)
+  \end{aligned}
+  \right.
+\end{equation*}
+将分离变量形式的解
+\begin{equation*}
+  u(x,t) = X(x) T(t)
+\end{equation*}
+带入方程，求解本征值
+\begin{equation*}
+  \dfrac{1}{v^{2}} \dfrac{T''(t)}{T(t)} = \dfrac{X''(x)}{X(x)} = -\lambda
+\end{equation*}
+\begin{equation*}
+  \begin{aligned}
+    T''(t) + \lambda v^{2} T(t) &= 0\\
+    X''(x) + \lambda X(x) &= 0
+  \end{aligned}
+\end{equation*}
+设$X(x)$的解$X(x) = A \sin \sqrt{\lambda} x + B \cos \sqrt{\lambda}x$，
+代入边界条件$u|_{x=0}=0$和$u|_{x=L} = 0$
+\begin{equation*}
+  \begin{aligned}
+    B &= 0\\
+    A \sin \sqrt{\lambda}x &= 0
+  \end{aligned}
+\end{equation*}
+本征值与本征函数
+\begin{equation*}
+  \begin{aligned}
+    \lambda_{n} &= \left( \dfrac{n \mathrm{\pi}}{l}  \right)^{2}\\
+    X_{n}(x) &=
+  \end{aligned}
+\end{equation*}
+用本征函数解$T(t)$
+\begin{equation*}
+  \begin{aligned}
+    T_{n}(t) = C_{n} \sin \dfrac{n \mathrm{\pi} v}{l}t + D_{n} \cos \dfrac{n \mathrm{\pi} v}{l}t
+  \end{aligned}
+\end{equation*}
+叠加出$u(x,t)$
+\begin{equation*}
+  u(x,t) = \sum_{n=1}^{\infty} \left( C_{n} \sin \dfrac{n \mathrm{\pi} v}{l}t + D_{n} \cos \dfrac{n \mathrm{\pi} v}{l}t \right)  \sin \dfrac{n \mathrm{\pi}}{l}x 
+\end{equation*}
+代入
+\begin{equation*}
+  \left\{
+  \begin{aligned}
+    & u |_{t=0} = \phi (x)\\
+    & \!\!\left. \dfrac{\partial u}{\partial t} \right|_{t=0} = \psi (x)
+  \end{aligned}
+  \right.
+\end{equation*}
+利用傅立叶积分计算$C_{n}$和$D_{n}$
+
 
 \section{勒让德方程}
 
@@ -48,9 +190,27 @@ $l$阶勒让德方程
     y' \left( x \right) &= a_{1}x + 2 a_{2}x + 3 a_{3}x^{2} + 4 a_{4}x^{3} \cdots \\
     y'' \left( x \right) &= 2 a_{2} + 3 \cdot 2  a_{3}x + 4 \cdot 3 a_{4}x^{2} + 5 \cdot 4 a_{5} x^{3} \cdots
   \end{aligned}
-\end{equaotion*}
+\end{equation*}
 代入方程，比较系数，得到奇数项和偶数项
 
+\section{傅立叶级数展开}
+
+\subsection{奇函数,周期$2l$}
+
+\begin{equation*}
+  f(x) = \sum\limits_{i=1}^{n}b_{k} \sin \dfrac{k \mathrm{\pi} x}{l} 
+\end{equation*}
+\begin{equation*}
+  b_{k} = \dfrac{2}{l} \int_{0}^{l} f(\xi) \sin \dfrac{k \mathrm{\pi} \xi}{l} \md \xi 
+\end{equation*}
+\subsection{偶函数,周期$2l$}
+
+\begin{equation*}
+  f(x) = \dfrac{a_{0}}{2} + \sum\limits_{i=1}^{n}a_{k} \cos \dfrac{k \mathrm{\pi} x}{l} 
+\end{equation*}
+\begin{equation*}
+  a_{k} = \dfrac{2}{l} \int_{0}^{l} f(\xi) \cos \dfrac{k \mathrm{\pi} \xi}{l} \md \xi 
+\end{equation*}
 \subsection{勒让德多项式}
 
 \begin{equation*}
@@ -68,5 +228,5 @@ $l$阶勒让德方程
       f_{l} &= \dfrac{2l+1}{2} \int_{-1}^{+1} f(x) P_{l}(x) \md x
     \end{aligned}
   \right.
-\end{equation*}
+\end{equation*}x
 \end{document}
