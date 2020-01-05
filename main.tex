@@ -91,7 +91,7 @@ $n$阶极点留数运算
 \subsection{小圆弧定理}
 
 
-当$z \rightarrow \infty$时，如果$(z-a)f(z) \rightarrow k$，积分路径是半径为$R$的圆弧$C_{R}$，则
+当$z \rightarrow a$时，如果$(z-a)f(z) \rightarrow k$，积分路径是半径为$R$的圆弧$C_{R}$，则
 \begin{equation*}
   \lim\limits_{\rho \rightarrow 0} \int_{C_{\rho}} f(z) \md z = \mathrm{i} k \left( \beta - \alpha  \right)
 \end{equation*}
@@ -106,6 +106,9 @@ $n$阶极点留数运算
 \section{数学物理方程的求解}
 
 \subsection{齐次边界条件}
+
+\subsubsection{波动方程}
+
 
 \begin{equation*}
   \left\{
@@ -168,6 +171,191 @@ $n$阶极点留数运算
 \end{equation*}
 利用傅立叶积分计算$C_{n}$和$D_{n}$
 
+\subsubsection{矩形区域的稳定问题}
+
+\begin{equation*}
+  \left\{
+  \begin{aligned}
+    & \dfrac{\partial^{2} u}{\partial x^{2}} + \dfrac{\partial^{2} u}{\partial y^{2}} = 0\\
+    & u|_{x=0} = 0\\
+    & u|_{y=0} = f(x)\\
+    & \!\!\left. \dfrac{\partial u}{\partial x} \right|_{x=a} = 0\\
+    & \!\!\left. \dfrac{\partial u }{\partial y} \right|_{y=b} = 0
+  \end{aligned}
+  \right.
+\end{equation*}
+设
+\begin{equation*}
+  u \left( x,y \right) = X(x)Y(y)
+\end{equation*}
+则
+\begin{equation*}
+  \dfrac{X''(x)}{X(x)} = - \dfrac{Y''(y)}{Y(y)} = - \lambda 
+\end{equation*}
+
+求解本征值问题
+\begin{equation*}
+  \begin{aligned}
+    X''(x) + \lambda X(x) &= 0\\
+    Y''(y) - \lambda Y(y) &= 0
+  \end{aligned}
+\end{equation*}
+边界条件给出
+\begin{equation*}
+  \begin{aligned}
+    X(0) &=  0\\
+    X'(a) &= 0
+  \end{aligned}
+\end{equation*}
+设
+\begin{equation*}
+  X(x) = A \sin \sqrt{\lambda} x + B \cos \sqrt{\lambda} x
+\end{equation*}
+则
+\begin{equation*}
+  \begin{aligned}
+    B &= 0\\
+    \cos \sqrt{\lambda} a &= 0
+  \end{aligned}
+\end{equation*}
+本征值
+\begin{equation*}
+  \sqrt{\lambda_{n}} a = \dfrac{2n+1}{2} \mathrm{\pi}
+\end{equation*}
+\begin{equation*}
+  \lambda_{n} = \left( \dfrac{2n+1}{2a} \mathrm{\pi} \right)^{2}
+\end{equation*}
+对应本正函数
+\begin{equation*}
+  X(x) = \sin  \dfrac{2n+1}{2a} \mathrm{\pi}  x
+\end{equation*}
+$Y(y)$的解为
+\begin{equation*}
+  Y(y) = C \cosh \sqrt{\lambda}x + D \sinh \sqrt{\lambda} x
+\end{equation*}
+代入本征值
+\begin{equation*}
+  Y_{n}(y) = C_{n} \cosh \dfrac{2n+1}{2a} \mathrm{\pi} x + D_{n} \sinh \dfrac{2n+1}{2a} \mathrm{\pi} x
+\end{equation*}
+分离变量形式的解
+\begin{equation*}
+  u(x,y) = \sum\limits_{n=0}^{\infty} \left( C_{n} \cosh \dfrac{2n+1}{2a} \mathrm{\pi} x + D_{n} \sinh \dfrac{2n+1}{2a} \mathrm{\pi} x \right)\sin  \dfrac{2n+1}{2a} \mathrm{\pi}  x
+\end{equation*}
+代入边界条件，使用傅立叶积分计算常数
+
+
+\subsection{非其次方程(特解法)}
+
+\begin{equation*}
+  \left\{
+  \begin{aligned}
+    & \dfrac{\partial^{2} u}{\partial t^{2}} - a^{2} \dfrac{\partial^{2} u}{\partial x^{2}} = f(x,t) \\
+    & u |_{x=0} = 0\\
+    & u |_{x=L} = 0\\
+    & u |_{t=0} = 0\\
+    & \!\!\left. \dfrac{\partial u}{\partial t} \right|_{t=0} = 0
+  \end{aligned}
+  \right.
+\end{equation*}
+设
+\begin{equation*}
+  u(x,t) = v(x,t) + w(x,t)
+\end{equation*}
+其中$v(x,t)$可以不满足初始条件
+\begin{equation*}
+  \left\{
+  \begin{aligned}
+    & \dfrac{\partial^{2} v}{\partial t^{2}} - a^{2} \dfrac{\partial^{2} v}{\partial x^{2}} = f(x,t) \\
+    & v |_{x=0} = 0\\
+    & v |_{x=L} = 0
+  \end{aligned}
+  \right.
+\end{equation*}
+
+$w(x,t)$满足
+\begin{equation*}
+  \left\{
+  \begin{aligned}
+    & \dfrac{\partial^{2} w}{\partial t^{2}} - a^{2} \dfrac{\partial^{2} w}{\partial x^{2}} = 0 \\
+    & w |_{x=0} =  -v|_{x=0} = 0\\
+    & w |_{x=L} = -v|_{x=L} = 0\\
+    & w |_{t=0} = -v|_{t=0}\\
+    & \!\!\left. \dfrac{\partial w}{\partial t} \right|_{t=0} = - \left. \dfrac{\partial v}{\partial t} \right|_{t=0}
+  \end{aligned}
+  \right.
+\end{equation*}
+
+\subsection{非齐次方程(展开法)}
+\begin{equation*}
+  \left\{
+  \begin{aligned}
+    & \dfrac{\partial^{2} u}{\partial t^{2}} - a^{2} \dfrac{\partial^{2} u}{\partial x^{2}} = f(x,t) \\
+    & u |_{x=0} = 0\\
+    & u |_{x=l} = 0\\
+    & u |_{t=0} = 0\\
+    & \!\!\left. \dfrac{\partial u}{\partial t} \right|_{t=0} = 0
+  \end{aligned}
+  \right.
+\end{equation*}
+
+将$f(x,t)$用相应齐次方程的本征函数$X_{n}(x)$展开
+\begin{equation*}
+  f(x,t) = \sum\limits_{n=1}^{\infty} g_{n}(t) X_{n}(x)
+\end{equation*}
+于是有
+\begin{equation*}
+  \sum\limits_{n=1}^{\infty} X_{n}(x)T_{n}''(t) - a^{2} X_{n}''(x)T_{n}(t) = \sum\limits_{n=1}^{\infty} g_{n}(t) X_{n}(x)
+\end{equation*}
+由于
+\begin{equation*}
+  X_{n}''(x) + \lambda_{n} X(x) = 0
+\end{equation*}
+有
+\begin{equation*}
+  \sum\limits_{n=1}^{\infty} X_{n}(x)T_{n}''(t) + a^{2} \lambda_{n} X_{n}(x)T_{n}(t) = \sum\limits_{n=1}^{\infty} g_{n}(t) X_{n}(x)
+\end{equation*}
+即
+\begin{equation*}
+  T_{n}''(t) + a^{2} \lambda_{n}T_{n}(t) = g_{n}(t)
+\end{equation*}
+初始条件给出
+\begin{equation*}
+  \begin{aligned}
+    \sum\limits_{n=1}^{\infty} X_{n}(0)T_{n}(0) &= 0\\
+    \sum\limits_{n=1}^{\infty} X_{n}(0)T_{n}'(0) &= 0
+  \end{aligned}
+\end{equation*}
+即
+\begin{equation*}
+  \begin{aligned}
+    T_{n}(0) &= 0\\
+    T_{n}'(0) &= 0
+  \end{aligned}
+\end{equation*}
+解为
+\begin{equation*}
+  T_{n}(t) = \dfrac{l}{n \mathrm{\pi} a} \int_{0}^{\tau} g_{n} (\tau) \sin \dfrac{n \mathrm{\pi} a}{l} (t - \tau ) \md \tau 
+\end{equation*}
+
+\section{傅立叶级数展开}
+
+\subsection{奇函数,周期$2l$}
+
+\begin{equation*}
+  f(x) = \sum\limits_{i=1}^{n}b_{k} \sin \dfrac{k \mathrm{\pi} x}{l} 
+\end{equation*}
+\begin{equation*}
+  b_{k} = \dfrac{2}{l} \int_{0}^{l} f(\xi) \sin \dfrac{k \mathrm{\pi} \xi}{l} \md \xi 
+\end{equation*}
+\subsection{偶函数,周期$2l$}
+
+\begin{equation*}
+  f(x) = \dfrac{a_{0}}{2} + \sum\limits_{i=1}^{n}a_{k} \cos \dfrac{k \mathrm{\pi} x}{l} 
+\end{equation*}
+\begin{equation*}
+  a_{k} = \dfrac{2}{l} \int_{0}^{l} f(\xi) \cos \dfrac{k \mathrm{\pi} \xi}{l} \md \xi 
+\end{equation*}
+
 
 \section{勒让德方程}
 
@@ -193,24 +381,7 @@ $l$阶勒让德方程
 \end{equation*}
 代入方程，比较系数，得到奇数项和偶数项
 
-\section{傅立叶级数展开}
 
-\subsection{奇函数,周期$2l$}
-
-\begin{equation*}
-  f(x) = \sum\limits_{i=1}^{n}b_{k} \sin \dfrac{k \mathrm{\pi} x}{l} 
-\end{equation*}
-\begin{equation*}
-  b_{k} = \dfrac{2}{l} \int_{0}^{l} f(\xi) \sin \dfrac{k \mathrm{\pi} \xi}{l} \md \xi 
-\end{equation*}
-\subsection{偶函数,周期$2l$}
-
-\begin{equation*}
-  f(x) = \dfrac{a_{0}}{2} + \sum\limits_{i=1}^{n}a_{k} \cos \dfrac{k \mathrm{\pi} x}{l} 
-\end{equation*}
-\begin{equation*}
-  a_{k} = \dfrac{2}{l} \int_{0}^{l} f(\xi) \cos \dfrac{k \mathrm{\pi} \xi}{l} \md \xi 
-\end{equation*}
 \subsection{勒让德多项式}
 
 \begin{equation*}
