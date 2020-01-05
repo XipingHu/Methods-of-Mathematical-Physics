@@ -96,16 +96,35 @@ $n$阶极点留数运算
   \lim\limits_{\rho \rightarrow 0} \int_{C_{\rho}} f(z) \md z = \mathrm{i} k \left( \beta - \alpha  \right)
 \end{equation*}
 
-\section{波动方程的行波解}
+\section{傅立叶级数展开}
+
+\subsection{奇函数,周期$2l$}
+
+\begin{equation*}
+  f(x) = \sum\limits_{i=1}^{n}b_{k} \sin \dfrac{k \mathrm{\pi} x}{l} 
+\end{equation*}
+\begin{equation*}
+  b_{k} = \dfrac{2}{l} \int_{0}^{l} f(\xi) \sin \dfrac{k \mathrm{\pi} \xi}{l} \md \xi 
+\end{equation*}
+\subsection{偶函数,周期$2l$}
+
+\begin{equation*}
+  f(x) = \dfrac{a_{0}}{2} + \sum\limits_{i=1}^{n}a_{k} \cos \dfrac{k \mathrm{\pi} x}{l} 
+\end{equation*}
+\begin{equation*}
+  a_{k} = \dfrac{2}{l} \int_{0}^{l} f(\xi) \cos \dfrac{k \mathrm{\pi} \xi}{l} \md \xi 
+\end{equation*}
+
+\section{数学物理方程的求解}
+\subsection{波动方程的行波解}
 
 达朗贝尔解
 \begin{equation*}
   u(x,t) = \dfrac{1}{2} \left[ \phi (x + vt) + \phi (x - vt) \right] + \dfrac{1}{2v} \int_{x-vt}^{x+vt} \psi(\xi) \md \xi
 \end{equation*}
 
-\section{数学物理方程的求解}
 
-\subsection{齐次边界条件}
+\subsection{齐次边界条件，齐次方程}
 
 \subsubsection{波动方程}
 
@@ -273,17 +292,7 @@ $Y(y)$的解为
 \end{equation*}
 
 $w(x,t)$满足
-\begin{equation*}
-  \left\{
-  \begin{aligned}
-    & \dfrac{\partial^{2} w}{\partial t^{2}} - a^{2} \dfrac{\partial^{2} w}{\partial x^{2}} = 0 \\
-    & w |_{x=0} =  -v|_{x=0} = 0\\
-    & w |_{x=L} = -v|_{x=L} = 0\\
-    & w |_{t=0} = -v|_{t=0}\\
-    & \!\!\left. \dfrac{\partial w}{\partial t} \right|_{t=0} = - \left. \dfrac{\partial v}{\partial t} \right|_{t=0}
-  \end{aligned}
-  \right.
-\end{equation*}
+
 
 \subsection{非齐次方程(展开法)}
 \begin{equation*}
@@ -337,24 +346,49 @@ $w(x,t)$满足
   T_{n}(t) = \dfrac{l}{n \mathrm{\pi} a} \int_{0}^{\tau} g_{n} (\tau) \sin \dfrac{n \mathrm{\pi} a}{l} (t - \tau ) \md \tau 
 \end{equation*}
 
-\section{傅立叶级数展开}
-
-\subsection{奇函数,周期$2l$}
+\subsection{非齐次边界条件的处理}
 
 \begin{equation*}
-  f(x) = \sum\limits_{i=1}^{n}b_{k} \sin \dfrac{k \mathrm{\pi} x}{l} 
+  \left\{
+  \begin{aligned}
+    & \dfrac{\partial^{2} u}{\partial t^{2}} - a^{2} \dfrac{\partial^{2} u}{\partial x^{2}} = 0 \\
+    & u |_{x=0} = \mu (t)\\
+    & u |_{x=l} = \nu (t)\\
+    & u |_{t=0} = 0\\
+    & \!\!\left. \dfrac{\partial u}{\partial t} \right|_{t=0} = 0
+  \end{aligned}
+  \right.
 \end{equation*}
+令
 \begin{equation*}
-  b_{k} = \dfrac{2}{l} \int_{0}^{l} f(\xi) \sin \dfrac{k \mathrm{\pi} \xi}{l} \md \xi 
+  u(x,t) = v(x,t) + w(x,t)
 \end{equation*}
-\subsection{偶函数,周期$2l$}
+$v(x,t)$满足
+\begin{equation*}
+  \left\{
+  \begin{aligned}
+    & v |_{x=0} = \mu (t)\\
+    & v |_{x=l} = \nu (t)\\
+  \end{aligned}
+  \right.
+\end{equation*}
+可以设
+\begin{equation*}
+  v(x,t) = A(t) x + B(t)
+\end{equation*}
+$w(x,t)$满足
+\begin{equation*}
+  \left\{
+  \begin{aligned}
+    & \dfrac{\partial^{2} w}{\partial t^{2}} - a^{2} \dfrac{\partial^{2} w}{\partial x^{2}} = - \left( \dfrac{\partial^{2} v}{\partial t^{2}} - a^{2} \dfrac{\partial^{2} v}{\partial x^{2}} \right) \\
+    & w |_{x=0} = 0\\
+    & w |_{x=l} = 0\\
+    & w |_{t=0} = - v |_{t=0}\\
+    & \!\!\left. \dfrac{\partial w}{\partial t} \right|_{t=0} = - \left. \dfrac{\partial v}{\partial t} \right|_{t=0}
+  \end{aligned}
+  \right.
+\end{equation*}
 
-\begin{equation*}
-  f(x) = \dfrac{a_{0}}{2} + \sum\limits_{i=1}^{n}a_{k} \cos \dfrac{k \mathrm{\pi} x}{l} 
-\end{equation*}
-\begin{equation*}
-  a_{k} = \dfrac{2}{l} \int_{0}^{l} f(\xi) \cos \dfrac{k \mathrm{\pi} \xi}{l} \md \xi 
-\end{equation*}
 
 
 \section{勒让德方程}
