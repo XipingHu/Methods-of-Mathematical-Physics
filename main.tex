@@ -22,7 +22,7 @@
 \renewcommand{\mathbf}[1]{\boldsymbol{\Oldmathbf{#1}}}
 \let\eqnarray\align
 
-\author{Xiping Hu}
+\author{胡喜平}
 \title{数学物理方法要背的东西汇总}
 
 \begin{document}
@@ -98,6 +98,27 @@ $n$阶极点留数运算
 
 \section{傅立叶级数展开}
 
+\subsection{函数，周期$2l$}
+
+\begin{equation*}
+  f(x) = \dfrac{a_{0}}{2} + \sum\limits_{i=1}^{n}a_{k} \cos \dfrac{k \mathrm{\pi} x}{l} + \sum\limits_{i=1}^{n}b_{k} \sin \dfrac{k \mathrm{\pi} x}{l} 
+\end{equation*}
+\begin{equation*}
+  \begin{aligned}
+    a_{k} &= \dfrac{1}{l} \int_{-l}^{l} f(\xi) \cos \dfrac{k \mathrm{\pi} \xi}{l} \md \xi \\
+    b_{k} &= \dfrac{1}{l} \int_{-l}^{l} f(\xi) \sin \dfrac{k \mathrm{\pi} \xi}{l} \md \xi 
+  \end{aligned}
+\end{equation*}
+积分前面系数的确定方法：利用正交性
+\begin{equation*}
+  \begin{aligned}
+    \int_{-l}^{l} \sin \dfrac{k \mathrm{\pi} \xi}{l} \sin \dfrac{k \mathrm{\pi} \xi}{l} \md \xi &= \int_{-l}^{l} \sin^{2} \dfrac{k \mathrm{\pi} \xi}{l}  \md \xi \\
+    &= \dfrac{1}{2} \int_{-l}^{l} 1 - \cos \dfrac{2 k \mathrm{\pi} \xi}{l}  \md \xi \\
+    &= \dfrac{1}{2} \dfrac{l}{2 k \mathrm{\pi}} \int_{-l}^{l} 1 - \cos \dfrac{2 k \mathrm{\pi} \xi}{l}  \md \dfrac{2 k \mathrm{\pi} \xi}{l} \\
+    &= \dfrac{l}{2 k \mathrm{\pi}} \dfrac{2 k \mathrm{\pi}}{l} \cdot 2l\\
+    &= l
+  \end{aligned}
+\end{equation*}
 \subsection{奇函数,周期$2l$}
 
 \begin{equation*}
@@ -132,9 +153,9 @@ $n$阶极点留数运算
 \begin{equation*}
   \left\{
   \begin{aligned}
-    & \dfrac{\partial^{2} u}{\partial t^{2}} - v^{2} \dfrac{\partial^{2} u}{\partial x^{2}} = 0 \\
+    & \dfrac{\partial^{2} u}{\partial t^{2}} - a^{2} \dfrac{\partial^{2} u}{\partial x^{2}} = 0 \\
     & u |_{x=0} = 0\\
-    & u |_{x=L} = 0\\
+    & u |_{x=l} = 0\\
     & u |_{t=0} = \phi (x)\\
     & \!\!\left. \dfrac{\partial u}{\partial t} \right|_{t=0} = \psi (x)
   \end{aligned}
@@ -150,34 +171,34 @@ $n$阶极点留数运算
 \end{equation*}
 \begin{equation*}
   \begin{aligned}
-    T''(t) + \lambda v^{2} T(t) &= 0\\
+    T''(t) + \lambda a^{2} T(t) &= 0\\
     X''(x) + \lambda X(x) &= 0
   \end{aligned}
 \end{equation*}
 设$X(x)$的解$X(x) = A \sin \sqrt{\lambda} x + B \cos \sqrt{\lambda}x$，
-代入边界条件$u|_{x=0}=0$和$u|_{x=L} = 0$
+代入边界条件$u|_{x=0}=0$和$u|_{x=l} = 0$
 \begin{equation*}
   \begin{aligned}
     B &= 0\\
-    A \sin \sqrt{\lambda}x &= 0
+    A \sin \sqrt{\lambda}l &= 0
   \end{aligned}
 \end{equation*}
 本征值与本征函数
 \begin{equation*}
   \begin{aligned}
     \lambda_{n} &= \left( \dfrac{n \mathrm{\pi}}{l}  \right)^{2}\\
-    X_{n}(x) &=
+    X_{n}(x) &= \sin \dfrac{n \mathrm{\pi}}{l} x
   \end{aligned}
 \end{equation*}
 用本征函数解$T(t)$
 \begin{equation*}
   \begin{aligned}
-    T_{n}(t) = C_{n} \sin \dfrac{n \mathrm{\pi} v}{l}t + D_{n} \cos \dfrac{n \mathrm{\pi} v}{l}t
+    T_{n}(t) = C_{n} \sin \dfrac{n \mathrm{\pi} a}{l}t + D_{n} \cos \dfrac{n \mathrm{\pi} a}{l}t
   \end{aligned}
 \end{equation*}
 叠加出$u(x,t)$
 \begin{equation*}
-  u(x,t) = \sum_{n=1}^{\infty} \left( C_{n} \sin \dfrac{n \mathrm{\pi} v}{l}t + D_{n} \cos \dfrac{n \mathrm{\pi} v}{l}t \right)  \sin \dfrac{n \mathrm{\pi}}{l}x 
+  u(x,t) = \sum_{n=1}^{\infty} \left( C_{n} \sin \dfrac{n \mathrm{\pi} a}{l}t + D_{n} \cos \dfrac{n \mathrm{\pi} a}{l}t \right)  \sin \dfrac{n \mathrm{\pi}}{l}x 
 \end{equation*}
 代入
 \begin{equation*}
@@ -270,7 +291,7 @@ $Y(y)$的解为
   \begin{aligned}
     & \dfrac{\partial^{2} u}{\partial t^{2}} - a^{2} \dfrac{\partial^{2} u}{\partial x^{2}} = f(x,t) \\
     & u |_{x=0} = 0\\
-    & u |_{x=L} = 0\\
+    & u |_{x=l} = 0\\
     & u |_{t=0} = 0\\
     & \!\!\left. \dfrac{\partial u}{\partial t} \right|_{t=0} = 0
   \end{aligned}
@@ -286,12 +307,23 @@ $Y(y)$的解为
   \begin{aligned}
     & \dfrac{\partial^{2} v}{\partial t^{2}} - a^{2} \dfrac{\partial^{2} v}{\partial x^{2}} = f(x,t) \\
     & v |_{x=0} = 0\\
-    & v |_{x=L} = 0
+    & v |_{x=l} = 0
   \end{aligned}
   \right.
 \end{equation*}
 
 $w(x,t)$满足
+\begin{equation*}
+  \left\{
+  \begin{aligned}
+    & \dfrac{\partial^{2} w}{\partial t^{2}} - a^{2} \dfrac{\partial^{2} w}{\partial x^{2}} = 0 \\
+    & w |_{x=0} = 0\\
+    & w |_{x=l} = 0\\
+    & w |_{t=0} = - v |_{t=0}\\
+    & \!\!\left. \dfrac{\partial w}{\partial t} \right|_{t=0} = - \left. \dfrac{\partial v}{\partial t} \right|_{t=0}
+  \end{aligned}
+  \right.
+\end{equation*}
 
 
 \subsection{非齐次方程(展开法)}
@@ -343,8 +375,9 @@ $w(x,t)$满足
 \end{equation*}
 解为
 \begin{equation*}
-  T_{n}(t) = \dfrac{l}{n \mathrm{\pi} a} \int_{0}^{\tau} g_{n} (\tau) \sin \dfrac{n \mathrm{\pi} a}{l} (t - \tau ) \md \tau 
+  T_{n}(t) = \dfrac{l}{n \mathrm{\pi} a} \int_{0}^{t} g_{n} (\tau) \sin \dfrac{n \mathrm{\pi} a}{l} (t - \tau ) \md \tau 
 \end{equation*}
+其中$g_{n}(\tau)$需要利用本征函数$X_{n}(x)$的正交性积分解出
 
 \subsection{非齐次边界条件的处理}
 
@@ -465,5 +498,5 @@ $l$阶勒让德方程
       f_{l} &= \dfrac{2l+1}{2} \int_{-1}^{+1} f(x) P_{l}(x) \md x
     \end{aligned}
   \right.
-\end{equation*}x
+\end{equation*}
 \end{document}
