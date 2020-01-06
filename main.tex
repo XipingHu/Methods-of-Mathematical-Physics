@@ -81,20 +81,63 @@ $n$阶极点留数运算
 
 \emph{非常重要，请仔细阅读梁昆淼《数学物理方法》P56-P63，就那几种类型}
 
-\subsection{大圆弧定理}
+\subsubsection{类型一}
+
+\begin{equation*}
+  \int_{0}^{2\mathrm{\pi}} R \left( \cos(x),\sin(x) \right) \mathrm{d} x
+\end{equation*}
+做变换$z = \mathrm{e}^{\mathrm{i} x} $
+\begin{equation*}
+  I = \oint_{|z|=1} R \left( \dfrac{z+z^{-1}}{2} ,\dfrac{z-z^{-1}}{2}  \right) \dfrac{\mathrm{d} z}{\mathrm{i} z} 
+\end{equation*}
+
+\subsubsection{类型二}
+
+\begin{equation*}
+  \int_{- \infty}^{+ \infty} f(x) \mathrm{d} x
+\end{equation*}
+其中
+\begin{equation*}
+  zf(z) \rightarrow  0 
+\end{equation*}
+则
+\begin{equation*}
+  I = 2 \mathrm{\pi} \mathrm{i} \left\{ \text{上半平面奇点留数和} \right\}
+\end{equation*}
+
+\paragraph{大圆弧定理}
 
 当$z \rightarrow \infty$时，如果$zf(z) \rightarrow k$，积分路径是半径为$R$的圆弧$C_{R}$，则
 \begin{equation*}
   \lim\limits_{R \rightarrow \infty} \int_{C_{R}} f(z) \md z = \mathrm{i} k (\beta - \alpha)
 \end{equation*}
 
-\subsection{小圆弧定理}
-
+\paragraph{小圆弧定理}
 
 当$z \rightarrow a$时，如果$(z-a)f(z) \rightarrow k$，积分路径是半径为$R$的圆弧$C_{R}$，则
 \begin{equation*}
   \lim\limits_{\rho \rightarrow 0} \int_{C_{\rho}} f(z) \md z = \mathrm{i} k \left( \beta - \alpha  \right)
 \end{equation*}
+
+\subsubsection{类型三}
+
+\begin{equation*}
+  \int_{0}^{\infty} F(x) \cos mx \mathrm{d} x
+\end{equation*}
+\begin{equation*}
+  \int_{0}^{\infty} G(x) \sin mx \mathrm{d} x
+\end{equation*}
+其中$F(x) \cos mx$和$ G(x) \sin mx$为偶函数
+\begin{equation*}
+  \begin{aligned}
+    \int_{0}^{\infty} F(x) \cos mx \mathrm{d} x &= \mathrm{\pi} \mathrm{i} \{\text{$F(z)e^{\mathrm{i} m z}$上半平面奇点留数和}\}\\
+    \int_{0}^{\infty} G(x) \sin mx \mathrm{d} x &= \mathrm{\pi} \{\text{$G(z)e^{\mathrm{i} m z}$上半平面奇点留数和}\}
+  \end{aligned}
+\end{equation*}
+
+\subsubsection{当实轴上有奇点时}
+
+每一个奇点导致最后积分加$\mathrm{\pi} \mathrm{i} \mathrm{Res} f(z)$
 
 \section{傅立叶级数展开}
 
